@@ -17,7 +17,7 @@ Or add the following in your composer.json file and run `composer install`
 }
 ```
 
-#Usage
+# Usage
 Using envalid in your project is super simple, here is an example
 ```php
 $validator = new azi/Validator();
@@ -35,7 +35,6 @@ $validator->validate(array_merge($_POST, $_FILES), [
 ]);
 ```
 
-
 # Available Rules
 - required
 - email 
@@ -51,3 +50,11 @@ $validator->validate(array_merge($_POST, $_FILES), [
 - Same
 - Alpha
 - Alnum
+
+# Contributions
+This repository is maintained by 
+[@azeemhassni](https://github.com/azeemhassni)
+ 
+ If you can contribute I'd love to merge your PR and your name will be mentioned 
+ in the release notes and contributors list
+ 
