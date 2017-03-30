@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.org/azeemhassni/envalid.svg?branch=master)](https://travis-ci.org/azeemhassni/envalid)
 
-#Installation
+# Installation
 Envalid can be installed via `composer` just execute the following command
 in your project root
 
