@@ -6,7 +6,7 @@
  *
  * @package azi
  */
-class ValidatorTest extends TestCase
+class EnvalidTest extends TestCase
 {
     public function testItAcceptsRules()
     {
