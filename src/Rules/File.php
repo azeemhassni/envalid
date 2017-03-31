@@ -6,6 +6,11 @@ namespace azi\Rules;
 use azi\Arguments;
 use azi\Rules\Contracts\RuleInterface;
 
+/**
+ * Class File
+ *
+ * @package azi\Rules
+ */
 class File implements RuleInterface
 {
     protected $types = [

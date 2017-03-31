@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: azi
- * Date: 3/30/17
- * Time: 3:04 PM
- */
 
 namespace azi\Rules;
 

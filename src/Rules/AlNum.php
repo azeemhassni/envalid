@@ -6,6 +6,11 @@ namespace azi\Rules;
 use azi\Arguments;
 use azi\Rules\Contracts\RuleInterface;
 
+/**
+ * Class AlNum
+ *
+ * @package azi\Rules
+ */
 class AlNum implements RuleInterface
 {
 

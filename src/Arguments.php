@@ -133,7 +133,7 @@ class Arguments implements \ArrayAccess
     /**
      * Get validator instance in rule classes
      *
-     * @return Validator
+     * @return Envalid
      */
     public function getValidator()
     {

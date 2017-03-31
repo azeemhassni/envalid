@@ -6,6 +6,11 @@ namespace azi\Rules;
 use azi\Arguments;
 use azi\Rules\Contracts\RuleInterface;
 
+/**
+ * Class Max
+ *
+ * @package azi\Rules
+ */
 class Max implements RuleInterface
 {
     protected $message;

@@ -6,6 +6,11 @@ namespace azi\Rules;
 use azi\Arguments;
 use azi\Rules\Contracts\RuleInterface;
 
+/**
+ * Class Min
+ *
+ * @package azi\Rules
+ */
 class Min implements RuleInterface
 {
     protected $message;

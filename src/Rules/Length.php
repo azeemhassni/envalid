@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: azi
- * Date: 3/30/17
- * Time: 12:58 PM
- */
+
 
 namespace azi\Rules;
 
@@ -12,6 +7,11 @@ namespace azi\Rules;
 use azi\Arguments;
 use azi\Rules\Contracts\RuleInterface;
 
+/**
+ * Class Length
+ *
+ * @package azi\Rules
+ */
 class Length implements RuleInterface
 {
 

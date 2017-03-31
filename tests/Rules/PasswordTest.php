@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: azi
- * Date: 3/29/17
- * Time: 3:11 PM
- */
+
 
 namespace azi\Tests\Rules;
 

@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: azi
- * Date: 3/28/17
- * Time: 11:51 AM
- */
+
 
 namespace azi\Rules;
 
@@ -12,6 +7,11 @@ namespace azi\Rules;
 use azi\Arguments;
 use azi\Rules\Contracts\RuleInterface;
 
+/**
+ * Class ArrayRule
+ *
+ * @package azi\Rules
+ */
 class ArrayRule implements RuleInterface
 {
     protected $contains = [];
@@ -41,7 +41,7 @@ class ArrayRule implements RuleInterface
     public function message()
     {
         if ($this->validationType == 'contains') {
-            return '{field} must contain the following values ' . implode(',',$this->contains);
+            return '{field} must contain the following values ' . implode(',', $this->contains);
         }
 
         return "{field} must be an array";

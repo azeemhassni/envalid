@@ -6,6 +6,11 @@ namespace azi\Rules;
 use azi\Arguments;
 use azi\Rules\Contracts\RuleInterface;
 
+/**
+ * Class Alpha
+ *
+ * @package azi\Rules
+ */
 class Alpha implements RuleInterface
 {
 

@@ -1,26 +1,25 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: azi
- * Date: 3/27/17
- * Time: 11:04 PM
- */
 
 namespace azi\Tests;
 
 
-use azi\Validator;
+use azi\Envalid;
 
+/**
+ * Class TestCase
+ *
+ * @package azi\Tests
+ */
 class TestCase extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var Validator
+     * @var Envalid
      */
     protected $validator;
 
     public function setUp()
     {
-        $this->validator = new Validator();
+        $this->validator = new Envalid();
     }
 
     public function tearDown()

@@ -4,6 +4,11 @@
 use azi\Arguments;
 use azi\Rules\Contracts\RuleInterface;
 
+/**
+ * Class Password
+ *
+ * @package azi\Rules
+ */
 class Password implements RuleInterface
 {
     const NORMAL = 'normal';

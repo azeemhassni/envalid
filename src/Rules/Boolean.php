@@ -5,6 +5,11 @@ namespace azi\Rules;
 use azi\Arguments;
 use azi\Rules\Contracts\RuleInterface;
 
+/**
+ * Class Boolean
+ *
+ * @package azi\Rules
+ */
 class Boolean implements RuleInterface
 {
 

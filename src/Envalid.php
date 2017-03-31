@@ -21,11 +21,11 @@ use azi\Rules\Required;
 use azi\Rules\Same;
 
 /**
- * Class Validator
+ * Class Envalid
  *
  * @package azi
  */
-class Validator
+class Envalid
 {
     protected $userRules;
 
@@ -218,7 +218,7 @@ class Validator
 
     /**
      * @param mixed $errorBag
-     * @return Validator
+     * @return Envalid
      */
     public function setErrorBag( ErrorBagInterface $errorBag )
     {
