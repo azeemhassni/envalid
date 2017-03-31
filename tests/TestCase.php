@@ -20,7 +20,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->validator = new Validator();
+        $this->validator = new Envalid();
     }
 
     public function tearDown()
