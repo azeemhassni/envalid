@@ -20,16 +20,16 @@ Or add the following in your composer.json file and run `composer install`
 # Usage
 Using envalid in your project is super simple, here is an example
 ```php
-$validator = new azi/Validator();
+$validator = new azi/Envalid();
 $validator->validate($_POST, [
     'username'         => 'required',
     'password'         => 'required|password:strong',
     'confirm_password' => 'required|same:password'
 ]);
 ```
-If you've files to validate you will need to merge `$_POST|$_GET` and with `$_FILES` just like the following
+If you've files to validate you will need to merge `$_POST|$_GET` with `$_FILES` just like the following
 ```php
-$validator = new azi/Validator();
+$validator = new azi/Envalid();
 $validator->validate(array_merge($_POST, $_FILES), [
     'profile_picture' => 'file:image'
 ]);
