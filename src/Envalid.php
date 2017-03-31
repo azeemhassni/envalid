@@ -25,7 +25,7 @@ use azi\Rules\Same;
  *
  * @package azi
  */
-class Validator
+class Envalid
 {
     protected $userRules;
 
