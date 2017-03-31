@@ -44,17 +44,17 @@ $validator->validate(array_merge($_POST, $_FILES), [
 - min
 - max
 - length
-- Array
-- Boolean
-- IP
-- Same
-- Alpha
-- Alnum
+- array
+- boolean
+- ip
+- same
+- alpha
+- alnum
 
 # Contributions
 This repository is maintained by 
 [@azeemhassni](https://github.com/azeemhassni)
  
  If you can contribute I'd love to merge your PR and your name will be mentioned 
- in the release notes and contributors list
+ in the release notes and contributors list.
  
