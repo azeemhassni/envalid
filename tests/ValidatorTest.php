@@ -1,5 +1,7 @@
 <?php namespace azi\Tests;
 
+use azi\Arguments;
+
 /**
  * Tests for azi\Validator
  * Class ValidatorTest
@@ -39,6 +41,23 @@ class ValidatorTest extends TestCase
         $this->assertEquals('Email must be a valid email address', $errors->get('email')->last());
     }
 
+    public function testItAllowsCallableCustomRules()
+    {
+        $this->validator->addRule('one_to_ten', function ( $field, $value, Arguments $args ) {
+            if ($value >= 1 && $value <= 10) {
+                return true;
+            }
+
+            return "{field} must be between 1-10";
+        });
+
+        $this->validator->validate(['kid_age' => '5'], [
+            'kid_age' => 'one_to_ten'
+        ]);
+
+        $this->assertTrue($this->validator->passed());
+    }
+
     public function testItValidatesRequiredFields()
     {
         $this->validator->validate(['name' => 'Azeem Hassni'], [
@@ -56,8 +75,6 @@ class ValidatorTest extends TestCase
 
         $this->assertTrue($this->validator->passed());
     }
-
-
 
 
 }

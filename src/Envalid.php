@@ -106,7 +106,17 @@ class Envalid
                 }
 
                 $ruleClass = @$this->rules[ $ruleName ];
-                $valid     = $ruleClass->validate($field, $value, $parsed[ 'args' ]);
+                if (is_callable($ruleClass)) {
+                    $ruleMessage = call_user_func_array($ruleClass, [
+                        $field,
+                        $value,
+                        $parsed[ 'args' ]
+                    ]);
+
+                    $valid = $ruleMessage === true;
+                } else {
+                    $valid = $ruleClass->validate($field, $value, $parsed[ 'args' ]);
+                }
 
                 if (!$ruleMessage) {
                     $ruleMessage = str_replace(['{field}'], $this->labelize($field), $ruleClass->message());
@@ -197,11 +207,16 @@ class Envalid
      * Register a new Rule to validator
      *
      * @param $id
-     * @param RuleInterface $rule
+     * @param callable|RuleInterface $rule
      * @return $this
+     * @throws \Exception
      */
-    public function addRule( $id, RuleInterface $rule )
+    public function addRule( $id, $rule )
     {
+        if (!is_callable($rule) && !$rule instanceof RuleInterface) {
+            throw new \Exception("Rule must be callable or an instance of " . RuleInterface::class);
+        }
+
         $this->rules[ $id ] = $rule;
         return $this;
     }
