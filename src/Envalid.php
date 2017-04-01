@@ -214,7 +214,7 @@ class Envalid
     public function addRule( $id, $rule )
     {
         if (!is_callable($rule) && !$rule instanceof RuleInterface) {
-            throw new \Exception("Rule must be callable or an instance of " . RuleInterface::class);
+            throw new \Exception("Rule must be callable or an instance of " . '\azi\Rules\Contracts\RuleInterface');
         }
 
         $this->rules[ $id ] = $rule;
