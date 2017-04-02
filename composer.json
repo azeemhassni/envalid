@@ -1,5 +1,5 @@
 {
-  "name": "azi/validator",
+  "name": "azi/envalid",
   "description": "Server side data/form validation library",
   "license": "MIT",
   "authors": [
