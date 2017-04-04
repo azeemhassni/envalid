@@ -8,7 +8,7 @@ use azi\Arguments;
  *
  * @package azi
  */
-class ValidatorTest extends TestCase
+class EnvalidTest extends TestCase
 {
     public function testItAcceptsRules()
     {
@@ -76,5 +76,21 @@ class ValidatorTest extends TestCase
         $this->assertTrue($this->validator->passed());
     }
 
+    public function testTheErrorBagIsJsonSerializable()
+    {
+        $this->validator->validate([
+            'name' => null
+        ], [
+            'name' => 'required'
+        ]);
 
+        $errors = $this->validator->getErrors();
+
+        $errorsJson = json_encode($errors);
+        $this->assertJson($errorsJson);
+
+        $errors   = json_decode($errorsJson);
+        $expected = (object) ['name' => ['Name is required']];
+        $this->assertEquals($expected, $errors);
+    }
 }

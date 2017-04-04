@@ -7,7 +7,7 @@ namespace azi;
  *
  * @package azi
  */
-class ErrorMessages implements \ArrayAccess
+class ErrorMessages implements \ArrayAccess, \JsonSerializable
 {
     /**
      * @var array
@@ -121,14 +121,6 @@ class ErrorMessages implements \ArrayAccess
     }
 
     /**
-     * @return array
-     */
-    public function toArray()
-    {
-        return $this->messages;
-    }
-
-    /**
      * Returns the first message as string
      *
      * @return string
@@ -144,5 +136,23 @@ class ErrorMessages implements \ArrayAccess
     public function first()
     {
         return reset($this->messages);
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     *
+     * @return array|\stdClass data to be json serialized
+     */
+    function jsonSerialize()
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return $this->messages;
     }
 }

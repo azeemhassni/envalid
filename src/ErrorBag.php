@@ -10,7 +10,7 @@ use azi\Contracts\ErrorBagInterface;
  *
  * @package azi
  */
-class ErrorBag implements ArrayAccess, ErrorBagInterface
+class ErrorBag implements ArrayAccess, ErrorBagInterface, \JsonSerializable
 {
     /**
      * @var ErrorMessages[]
@@ -93,14 +93,6 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface
     }
 
     /**
-     * @return array
-     */
-    public function getErrors()
-    {
-        return $this->errors;
-    }
-
-    /**
      * @param $key
      * @return mixed
      */
@@ -128,5 +120,41 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface
     public function isEmpty()
     {
         return empty($this->errors);
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     *
+     * @return array|\stdClass data to be json serialized
+     */
+    function jsonSerialize()
+    {
+        return $this->getErrors();
+    }
+
+    /**
+     * @return array
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
+
+    /**
+     * @return string
+     */
+    public function toJson()
+    {
+        return json_encode($this->getErrors());
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return array_map(function ( ErrorMessages $error ) {
+            return $error->toArray();
+        }, $this->getErrors());
     }
 }

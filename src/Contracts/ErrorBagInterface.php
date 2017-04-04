@@ -44,4 +44,9 @@ interface ErrorBagInterface
      * @return mixed
      */
     public function isEmpty();
+
+    /**
+     * @return array
+     */
+    public function toArray();
 }
