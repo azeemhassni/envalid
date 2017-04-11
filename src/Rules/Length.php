@@ -40,6 +40,6 @@ class Length implements RuleInterface
      */
     public function message()
     {
-        // TODO: Implement message() method.
+        return '{$field} must match the requirements';
     }
 }
