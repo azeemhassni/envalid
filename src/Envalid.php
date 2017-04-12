@@ -101,7 +101,7 @@ class Envalid
                 $ruleMessage = $parsed[ 'message' ];
 
                 if (!isset($this->rules[ $ruleName ])) {
-                    trigger_error(sprintf("Rule `%s` is not recognized, please register it using Validator::addRule(\$ruleName, \$ruleClass) method",
+                    trigger_error(sprintf("Rule `%s` is not recognized, please register it using \azi\Envalid::addRule(\$ruleName, \$ruleClass) method",
                         $ruleName));
                 }
 
