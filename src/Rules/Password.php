@@ -118,6 +118,6 @@ class Password implements RuleInterface
             return $this->message;
         }
 
-        return "{field} must a good password";
+        return "{field} must be a good password";
     }
 }
