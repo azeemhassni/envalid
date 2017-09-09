@@ -8,16 +8,20 @@
       "email": "azeemhassni@gmail.com"
     }
   ],
-  "autoload" : {
+  "autoload": {
     "psr-4": {
-      "azi\\" : ["src"],
-      "azi\\Tests\\" : ["tests"]
+      "azi\\": [
+        "src"
+      ],
+      "azi\\Tests\\": [
+        "tests"
+      ]
     }
   },
   "require": {
     "php": ">=5.4"
   },
-  "require-dev" : {
+  "require-dev": {
     "phpunit/phpunit": "~4.5"
   }
 }

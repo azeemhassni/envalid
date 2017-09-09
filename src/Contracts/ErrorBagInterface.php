@@ -16,7 +16,7 @@ interface ErrorBagInterface
      * @param $error
      * @return $this
      */
-    public function addError( $key, $error );
+    public function addError($key, $error);
 
     /**
      * @return bool
@@ -32,13 +32,13 @@ interface ErrorBagInterface
      * @param $key
      * @return bool
      */
-    public function has( $key );
+    public function has($key);
 
     /**
      * @param $key
      * @return ErrorMessages
      */
-    public function get( $key );
+    public function get($key);
 
     /**
      * @return mixed

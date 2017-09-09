@@ -21,11 +21,11 @@ class Max implements RuleInterface
      * @param Arguments $args
      * @return mixed
      */
-    public function validate( $field, $value, Arguments $args )
+    public function validate($field, $value, Arguments $args)
     {
         $vars = $args->getVariables();
 
-        if (!( $value <= @$vars[ 0 ] )) {
+        if (!($value <= @$vars[ 0 ])) {
             $this->message = "{field} must be equal to or less than " . $vars[ 0 ];
             return false;
         }

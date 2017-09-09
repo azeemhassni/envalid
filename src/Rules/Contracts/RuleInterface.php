@@ -17,7 +17,7 @@ interface RuleInterface
      * @param Arguments $args
      * @return mixed
      */
-    public function validate( $field, $value, Arguments $args );
+    public function validate($field, $value, Arguments $args);
 
     /**
      * @return mixed

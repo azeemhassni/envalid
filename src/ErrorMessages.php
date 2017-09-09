@@ -24,7 +24,7 @@ class ErrorMessages implements \ArrayAccess, \JsonSerializable
      *
      * @param $field
      */
-    public function __construct( $field )
+    public function __construct($field)
     {
         $this->field = $field;
     }
@@ -34,7 +34,7 @@ class ErrorMessages implements \ArrayAccess, \JsonSerializable
      *
      * @param $message
      */
-    public function add( $message )
+    public function add($message)
     {
         $this->messages[] = $message;
     }
@@ -62,7 +62,7 @@ class ErrorMessages implements \ArrayAccess, \JsonSerializable
      * @return boolean true on success or false on failure. The return value will be casted to boolean if non-boolean was returned.
      * @since 5.0.0
      */
-    public function offsetExists( $offset )
+    public function offsetExists($offset)
     {
         return $this->has($offset);
     }
@@ -71,7 +71,7 @@ class ErrorMessages implements \ArrayAccess, \JsonSerializable
      * @param $index
      * @return bool
      */
-    public function has( $index )
+    public function has($index)
     {
         return !empty($this->messages[ $index ]);
     }
@@ -83,7 +83,7 @@ class ErrorMessages implements \ArrayAccess, \JsonSerializable
      * @return mixed Can return all value types.
      * @since 5.0.0
      */
-    public function offsetGet( $offset )
+    public function offsetGet($offset)
     {
         return $this->get($offset);
     }
@@ -92,7 +92,7 @@ class ErrorMessages implements \ArrayAccess, \JsonSerializable
      * @param $index
      * @return mixed
      */
-    public function get( $index )
+    public function get($index)
     {
         return $this->messages[ $index ];
     }
@@ -103,7 +103,7 @@ class ErrorMessages implements \ArrayAccess, \JsonSerializable
      * @param mixed $offset
      * @param mixed $value
      */
-    public function offsetSet( $offset, $value )
+    public function offsetSet($offset, $value)
     {
         $this->messages[ $offset ] = $value;
     }
@@ -115,7 +115,7 @@ class ErrorMessages implements \ArrayAccess, \JsonSerializable
      * @return void
      * @since 5.0.0
      */
-    public function offsetUnset( $offset )
+    public function offsetUnset($offset)
     {
         unset($this->messages);
     }

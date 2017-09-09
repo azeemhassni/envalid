@@ -21,7 +21,7 @@ class Arguments implements \ArrayAccess
      *
      * @param array $args
      */
-    public function __construct( array $args )
+    public function __construct(array $args)
     {
         $this->args = $args;
     }
@@ -30,7 +30,7 @@ class Arguments implements \ArrayAccess
      * @param $name
      * @return mixed
      */
-    function __get( $name )
+    function __get($name)
     {
         return $this->get($name);
     }
@@ -39,7 +39,7 @@ class Arguments implements \ArrayAccess
      * @param $key
      * @return mixed
      */
-    public function get( $key )
+    public function get($key)
     {
         if (!$this->has($key)) {
             return null;
@@ -52,7 +52,7 @@ class Arguments implements \ArrayAccess
      * @param $key
      * @return bool
      */
-    public function has( $key )
+    public function has($key)
     {
         return isset($this->args[ $key ]);
     }
@@ -62,7 +62,7 @@ class Arguments implements \ArrayAccess
      * @param $arguments
      * @return mixed
      */
-    function __call( $name, $arguments )
+    function __call($name, $arguments)
     {
         if (substr($name, 0, 3) == 'get') {
             $prop = strtolower(substr($name, 3));
@@ -76,7 +76,7 @@ class Arguments implements \ArrayAccess
      * @param mixed $offset
      * @return bool
      */
-    public function offsetExists( $offset )
+    public function offsetExists($offset)
     {
         return $this->has($offset);
     }
@@ -85,7 +85,7 @@ class Arguments implements \ArrayAccess
      * @param mixed $offset
      * @return mixed
      */
-    public function offsetGet( $offset )
+    public function offsetGet($offset)
     {
         return $this->get($offset);
     }
@@ -94,7 +94,7 @@ class Arguments implements \ArrayAccess
      * @param mixed $offset
      * @param mixed $value
      */
-    public function offsetSet( $offset, $value )
+    public function offsetSet($offset, $value)
     {
         $this->set($offset, $value);
     }
@@ -104,7 +104,7 @@ class Arguments implements \ArrayAccess
      * @param $value
      * @return Arguments
      */
-    public function set( $key, $value )
+    public function set($key, $value)
     {
         $this->args[ $key ] = $value;
 
@@ -114,7 +114,7 @@ class Arguments implements \ArrayAccess
     /**
      * @param mixed $offset
      */
-    public function offsetUnset( $offset )
+    public function offsetUnset($offset)
     {
         $this->remove($offset);
     }
@@ -123,7 +123,7 @@ class Arguments implements \ArrayAccess
      * @param $key
      * @return Arguments
      */
-    public function remove( $key )
+    public function remove($key)
     {
         unset($this->args[ $key ]);
 

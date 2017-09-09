@@ -78,7 +78,7 @@ class Envalid
      * @param $rules
      * @return $this
      */
-    public function validate( $data, $rules )
+    public function validate($data, $rules)
     {
         $this->userRules = $rules;
         $this->data      = $data;
@@ -137,7 +137,7 @@ class Envalid
      * @param $rule
      * @return array
      */
-    protected function parseRule( $rule )
+    protected function parseRule($rule)
     {
         // arguments can be passed in rule--key=value=key2=value2 syntax
         $args      = [];
@@ -180,7 +180,7 @@ class Envalid
      * @param $field
      * @return string
      */
-    public function labelize( $field )
+    public function labelize($field)
     {
         return ucwords(str_replace(['-', '_'], ' ', $field));
     }
@@ -211,7 +211,7 @@ class Envalid
      * @return $this
      * @throws \Exception
      */
-    public function addRule( $id, $rule )
+    public function addRule($id, $rule)
     {
         if (!is_callable($rule) && !$rule instanceof RuleInterface) {
             throw new \Exception("Rule must be callable or an instance of " . '\azi\Rules\Contracts\RuleInterface');
@@ -235,7 +235,7 @@ class Envalid
      * @param mixed $errorBag
      * @return Envalid
      */
-    public function setErrorBag( ErrorBagInterface $errorBag )
+    public function setErrorBag(ErrorBagInterface $errorBag)
     {
         $this->errorBag = $errorBag;
         return $this;

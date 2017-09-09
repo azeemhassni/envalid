@@ -42,7 +42,7 @@ class File implements RuleInterface
      * @param Arguments $args
      * @return mixed
      */
-    public function validate( $field, $file, Arguments $args )
+    public function validate($field, $file, Arguments $args)
     {
         $allowed_types = $args->getVariables();
         $type          = mime_content_type($file[ 'tmp_name' ]);

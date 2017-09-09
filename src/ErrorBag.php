@@ -23,7 +23,7 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface, \JsonSerializable
      * @param mixed $offset
      * @return bool
      */
-    public function offsetExists( $offset )
+    public function offsetExists($offset)
     {
         return isset($this->errors[ $offset ]);
     }
@@ -34,7 +34,7 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface, \JsonSerializable
      * @param mixed $offset
      * @return mixed
      */
-    public function offsetGet( $offset )
+    public function offsetGet($offset)
     {
         return $this->getError($offset);
     }
@@ -43,7 +43,7 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface, \JsonSerializable
      * @param $key
      * @return mixed
      */
-    public function getError( $key )
+    public function getError($key)
     {
         return $this->errors[ $key ];
     }
@@ -54,7 +54,7 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface, \JsonSerializable
      * @param mixed $offset
      * @param mixed $value
      */
-    public function offsetSet( $offset, $value )
+    public function offsetSet($offset, $value)
     {
         $this->addError($offset, $value);
     }
@@ -64,7 +64,7 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface, \JsonSerializable
      * @param $message
      * @return ErrorBag
      */
-    public function addError( $key, $message )
+    public function addError($key, $message)
     {
         if (!isset($this->errors[ $key ])) {
             $this->errors[ $key ] = new ErrorMessages($key);
@@ -79,7 +79,7 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface, \JsonSerializable
      *
      * @param mixed $offset
      */
-    public function offsetUnset( $offset )
+    public function offsetUnset($offset)
     {
         unset($this->errors[ $offset ]);
     }
@@ -96,7 +96,7 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface, \JsonSerializable
      * @param $key
      * @return mixed
      */
-    public function get( $key )
+    public function get($key)
     {
         if (!$this->has($key)) {
             return null;
@@ -109,7 +109,7 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface, \JsonSerializable
      * @param $key
      * @return bool
      */
-    public function has( $key )
+    public function has($key)
     {
         return isset($this->errors[ $key ]);
     }
@@ -153,7 +153,7 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface, \JsonSerializable
      */
     public function toArray()
     {
-        return array_map(function ( ErrorMessages $error ) {
+        return array_map(function (ErrorMessages $error) {
             return $error->toArray();
         }, $this->getErrors());
     }

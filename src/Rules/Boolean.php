@@ -19,7 +19,7 @@ class Boolean implements RuleInterface
      * @param Arguments $args
      * @return mixed
      */
-    public function validate( $field, $value, Arguments $args )
+    public function validate($field, $value, Arguments $args)
     {
         if (!isset($args[ 'variables' ][ 0 ])) {
             return is_bool($value);
