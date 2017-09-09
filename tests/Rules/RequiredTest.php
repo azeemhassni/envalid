@@ -24,7 +24,7 @@ class RequiredTest extends TestCase
     /**
      * @test
      */
-    public function validationFailsWhenARequiredFieldIsEmpty(  )
+    public function validationFailsWhenARequiredFieldIsEmpty()
     {
         $this->validator->validate(['name' => ''], [
             'name' => 'required'

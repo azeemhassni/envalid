@@ -19,7 +19,7 @@ class BooleanTest extends TestCase
         $this->assertTrue($this->validator->passed());
     }
 
-    public function testItValidatesTrueValues(  )
+    public function testItValidatesTrueValues()
     {
 
         $this->validator->validate([

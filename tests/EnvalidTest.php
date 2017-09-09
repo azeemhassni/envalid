@@ -43,7 +43,7 @@ class EnvalidTest extends TestCase
 
     public function testItAllowsCallableCustomRules()
     {
-        $this->validator->addRule('one_to_ten', function ( $field, $value, Arguments $args ) {
+        $this->validator->addRule('one_to_ten', function ($field, $value, Arguments $args) {
             if ($value >= 1 && $value <= 10) {
                 return true;
             }
@@ -65,6 +65,13 @@ class EnvalidTest extends TestCase
         ]);
 
         $this->assertTrue($this->validator->passed());
+
+
+        $this->validator->validate(['name' => null], [
+            'name' => 'required'
+        ]);
+
+        $this->assertTrue($this->validator->failed());
     }
 
     public function testItValidatesEmailFields()
@@ -74,6 +81,12 @@ class EnvalidTest extends TestCase
         ]);
 
         $this->assertTrue($this->validator->passed());
+
+        $this->validator->validate(['email_address' => 'some text'], [
+            'email_address' => 'email'
+        ]);
+
+        $this->assertTrue($this->validator->failed());
     }
 
     public function testTheErrorBagIsJsonSerializable()
@@ -90,7 +103,7 @@ class EnvalidTest extends TestCase
         $this->assertJson($errorsJson);
 
         $errors   = json_decode($errorsJson);
-        $expected = (object) ['name' => ['Name is required']];
+        $expected = (object)['name' => ['Name is required']];
         $this->assertEquals($expected, $errors);
     }
 }

@@ -12,7 +12,7 @@ use azi\Tests\TestCase;
  */
 class ArrayRuleTest extends TestCase
 {
-    
+
     public function testItValidatesArrays()
     {
         $this->validator->validate([
