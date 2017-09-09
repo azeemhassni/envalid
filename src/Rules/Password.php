@@ -23,7 +23,7 @@ class Password implements RuleInterface
      * @param Arguments $args
      * @return mixed
      */
-    public function validate( $field, $password, Arguments $args )
+    public function validate($field, $password, Arguments $args)
     {
         $type = $args->getVariables();
 
@@ -39,7 +39,7 @@ class Password implements RuleInterface
      * @param $password
      * @return bool
      */
-    public function is( $strength, $password )
+    public function is($strength, $password)
     {
         $method = sprintf("is%s", ucwords($strength));
         return call_user_func([$this, $method], $password);
@@ -49,7 +49,7 @@ class Password implements RuleInterface
      * @param $password
      * @return bool
      */
-    public function isNormal( $password )
+    public function isNormal($password)
     {
         if (strlen($password) < 8) {
             $this->message = '{field} must be at least 8 characters long';
@@ -71,7 +71,7 @@ class Password implements RuleInterface
      * @param $password
      * @return bool
      */
-    public function isStrong( $password )
+    public function isStrong($password)
     {
         if (!$this->isMedium($password)) {
             return false;
@@ -82,26 +82,25 @@ class Password implements RuleInterface
             return false;
         }
 
-
-        return false;
+        return true;
     }
 
     /**
      * @param $password
      * @return bool
      */
-    public function isMedium( $password )
+    public function isMedium($password)
     {
         if (!$this->isNormal($password)) {
             return false;
         }
 
-        if (!!preg_match("#[a-z]#", $password)) {
+        if (!preg_match("#[a-z]#", $password)) {
             $this->message = '{field} must contain at least one lowercase letter';
             return false;
         }
 
-        if (!!preg_match("#[A-Z]#", $password)) {
+        if (!preg_match("#[A-Z]#", $password)) {
             $this->message = '{field} must contain at least one uppercase letter';
             return false;
         }
