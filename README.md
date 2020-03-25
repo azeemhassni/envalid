@@ -1,7 +1,7 @@
 # Envalid
 **Envalid** is a framework agnostic and fluent server side form validation package for PHP
 
-[![Build Status](https://travis-ci.org/azeemhassni/envalid.svg?branch=master)](https://travis-ci.org/azeemhassni/envalid)
+[![Build Status](https://travis-ci.org/azeemhassni/envalid.svg?branch=master&version=0.0.1)](https://travis-ci.org/azeemhassni/envalid)
 
 # [Documentation](http://envalid.azeemhassni.com/docs.html)
 
