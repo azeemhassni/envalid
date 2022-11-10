@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace azi;
 
 use ArrayAccess;
@@ -18,45 +20,12 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface, \JsonSerializable
     protected $errors = [];
 
     /**
-     * Whether a offset exists
-     *
-     * @param mixed $offset
-     * @return bool
-     */
-    public function offsetExists($offset)
-    {
-        return isset($this->errors[ $offset ]);
-    }
-
-    /**
-     * Offset to retrieve
-     *
-     * @param mixed $offset
-     * @return mixed
-     */
-    public function offsetGet($offset)
-    {
-        return $this->getError($offset);
-    }
-
-    /**
      * @param $key
      * @return mixed
      */
     public function getError($key)
     {
         return $this->errors[ $key ];
-    }
-
-    /**
-     * Offset to set
-     *
-     * @param mixed $offset
-     * @param mixed $value
-     */
-    public function offsetSet($offset, $value)
-    {
-        $this->addError($offset, $value);
     }
 
     /**
@@ -72,16 +41,6 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface, \JsonSerializable
 
         $this->errors[ $key ]->add($message);
         return $this;
-    }
-
-    /**
-     * Offset to unset
-     *
-     * @param mixed $offset
-     */
-    public function offsetUnset($offset)
-    {
-        unset($this->errors[ $offset ]);
     }
 
     /**
@@ -115,21 +74,11 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface, \JsonSerializable
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
     public function isEmpty()
     {
         return empty($this->errors);
-    }
-
-    /**
-     * Specify data which should be serialized to JSON
-     *
-     * @return array|\stdClass data to be json serialized
-     */
-    function jsonSerialize()
-    {
-        return $this->getErrors();
     }
 
     /**
@@ -156,5 +105,58 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface, \JsonSerializable
         return array_map(function (ErrorMessages $error) {
             return $error->toArray();
         }, $this->getErrors());
+    }
+
+    /**
+     * Whether a offset exists
+     *
+     * @param mixed $offset
+     * @return bool
+     */
+    public function offsetExists($offset): bool
+    {
+        return isset($this->errors[ $offset ]);
+    }
+
+    /**
+     * Offset to retrieve
+     *
+     * @param mixed $offset
+     * @return mixed
+     */
+    public function offsetGet($offset): mixed
+    {
+        return $this->getError($offset);
+    }
+
+    /**
+     * Offset to set
+     *
+     * @param mixed $offset
+     * @param mixed $value
+     */
+    public function offsetSet($offset, $value): void
+    {
+        $this->addError($offset, $value);
+    }
+
+    /**
+     * Offset to unset
+     *
+     * @param mixed $offset
+     */
+    public function offsetUnset($offset): void
+    {
+        unset($this->errors[ $offset ]);
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     *
+     * @return mixed data to be json serialized
+     */
+    function jsonSerialize(): mixed
+    {
+        return $this->getErrors();
     }
 }

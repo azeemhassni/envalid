@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace azi;
 
 /**
@@ -56,18 +58,6 @@ class ErrorMessages implements \ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Whether a offset exists
-     *
-     * @param mixed $offset An offset to check for.
-     * @return boolean true on success or false on failure. The return value will be casted to boolean if non-boolean was returned.
-     * @since 5.0.0
-     */
-    public function offsetExists($offset)
-    {
-        return $this->has($offset);
-    }
-
-    /**
      * @param $index
      * @return bool
      */
@@ -77,47 +67,12 @@ class ErrorMessages implements \ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Offset to retrieve
-     *
-     * @param mixed $offset The offset to retrieve.
-     * @return mixed Can return all value types.
-     * @since 5.0.0
-     */
-    public function offsetGet($offset)
-    {
-        return $this->get($offset);
-    }
-
-    /**
      * @param $index
      * @return mixed
      */
     public function get($index)
     {
         return $this->messages[ $index ];
-    }
-
-    /**
-     * Offset to set
-     *
-     * @param mixed $offset
-     * @param mixed $value
-     */
-    public function offsetSet($offset, $value)
-    {
-        $this->messages[ $offset ] = $value;
-    }
-
-    /**
-     * Offset to unset
-     *
-     * @param mixed $offset
-     * @return void
-     * @since 5.0.0
-     */
-    public function offsetUnset($offset)
-    {
-        unset($this->messages);
     }
 
     /**
@@ -139,20 +94,67 @@ class ErrorMessages implements \ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Specify data which should be serialized to JSON
-     *
-     * @return array|\stdClass data to be json serialized
-     */
-    function jsonSerialize()
-    {
-        return $this->toArray();
-    }
-
-    /**
      * @return array
      */
     public function toArray()
     {
         return $this->messages;
+    }
+
+    /**
+     * Whether a offset exists
+     *
+     * @param mixed $offset An offset to check for.
+     * @return bool true on success or false on failure. The return value will be casted to boolean if non-boolean was returned.
+     * @since 5.0.0
+     */
+    public function offsetExists($offset): bool
+    {
+        return $this->has($offset);
+    }
+
+    /**
+     * Offset to retrieve
+     *
+     * @param mixed $offset The offset to retrieve.
+     * @return mixed Can return all value types.
+     * @since 5.0.0
+     */
+    public function offsetGet($offset): mixed
+    {
+        return $this->get($offset);
+    }
+
+    /**
+     * Offset to set
+     *
+     * @param mixed $offset
+     * @param mixed $value
+     */
+    public function offsetSet($offset, $value): void
+    {
+        $this->messages[ $offset ] = $value;
+    }
+
+    /**
+     * Offset to unset
+     *
+     * @param mixed $offset
+     * @return void
+     * @since 5.0.0
+     */
+    public function offsetUnset($offset): void
+    {
+        unset($this->messages);
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     *
+     * @return mixed data to be json serialized
+     */
+    function jsonSerialize(): mixed
+    {
+        return $this->toArray();
     }
 }
