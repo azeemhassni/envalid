@@ -10,19 +10,19 @@ use azi\Envalid;
  *
  * @package azi\Tests
  */
-class TestCase extends \PHPUnit_Framework_TestCase
+class TestCase extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Envalid
      */
     protected $validator;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->validator = new Envalid();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->validator = null;
     }
