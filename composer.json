@@ -10,20 +10,22 @@
   ],
   "autoload": {
     "psr-4": {
-      "azi\\": [
-        "src"
-      ],
-      "azi\\Tests\\": [
-        "tests"
-      ]
+      "Azi\\Envalid\\": "src",
+      "Azi\\Envalid\\Tests\\": "tests"
     }
   },
   "require": {
     "php": "^7.4|^8.1",
-    "ext-json": "*"
+    "ext-json": "*",
+    "brazanation/documents": "^2.1"
   },
   "require-dev": {
     "rector/rector": "^0.14.7",
     "phpunit/phpunit": "^9.5"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   }
 }

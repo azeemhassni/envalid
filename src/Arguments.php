@@ -1,6 +1,8 @@
 <?php
 
-namespace azi;
+namespace Azi\Envalid;
+
+use ReturnTypeWillChange;
 
 /**
  * Class Arguments
@@ -76,7 +78,7 @@ class Arguments implements \ArrayAccess
      * @param mixed $offset
      * @return bool
      */
-    public function offsetExists($offset)
+    #[ReturnTypeWillChange] public function offsetExists($offset)
     {
         return $this->has($offset);
     }
@@ -85,7 +87,7 @@ class Arguments implements \ArrayAccess
      * @param mixed $offset
      * @return mixed
      */
-    public function offsetGet($offset)
+    #[ReturnTypeWillChange] public function offsetGet($offset)
     {
         return $this->get($offset);
     }
@@ -94,7 +96,7 @@ class Arguments implements \ArrayAccess
      * @param mixed $offset
      * @param mixed $value
      */
-    public function offsetSet($offset, $value)
+    #[ReturnTypeWillChange] public function offsetSet($offset, $value)
     {
         $this->set($offset, $value);
     }
@@ -114,7 +116,7 @@ class Arguments implements \ArrayAccess
     /**
      * @param mixed $offset
      */
-    public function offsetUnset($offset)
+    #[ReturnTypeWillChange] public function offsetUnset($offset)
     {
         $this->remove($offset);
     }

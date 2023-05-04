@@ -1,9 +1,9 @@
 <?php
 
-namespace azi\Tests;
+namespace Azi\Envalid\Tests;
 
 
-use azi\Envalid;
+use Azi\Envalid\Envalid;
 
 /**
  * Class TestCase

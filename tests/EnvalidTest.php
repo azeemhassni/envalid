@@ -1,6 +1,6 @@
-<?php namespace azi\Tests;
+<?php namespace Azi\Envalid\Tests;
 
-use azi\Arguments;
+use Azi\Envalid\Arguments;
 
 /**
  * Tests for azi\Validator

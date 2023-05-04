@@ -1,8 +1,8 @@
 <?php
 
-namespace azi\Contracts;
+namespace Azi\Envalid\Contracts;
 
-use azi\ErrorMessages;
+use Azi\Envalid\ErrorMessages;
 
 /**
  * Interface ErrorBagInterface

@@ -1,9 +1,9 @@
 <?php
 
-namespace azi\Tests\Rules;
+namespace Azi\Envalid\Tests\Rules;
 
 
-use azi\Tests\TestCase;
+use Azi\Envalid\Tests\TestCase;
 
 class IPTest extends TestCase
 {

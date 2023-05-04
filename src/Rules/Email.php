@@ -1,10 +1,10 @@
 <?php
 
-namespace azi\Rules;
+namespace Azi\Envalid\Rules;
 
 
-use azi\Arguments;
-use azi\Rules\Contracts\RuleInterface;
+use Azi\Envalid\Arguments;
+use Azi\Envalid\Rules\Contracts\RuleInterface;
 
 /**
  * Class Email

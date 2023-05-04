@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace azi;
+namespace Azi\Envalid;
 
 use ArrayAccess;
-use azi\Contracts\ErrorBagInterface;
+use Azi\Envalid\Contracts\ErrorBagInterface;
+use ReturnTypeWillChange;
 
 /**
  * Class ErrorBag
@@ -113,7 +114,7 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface, \JsonSerializable
      * @param mixed $offset
      * @return bool
      */
-    public function offsetExists($offset): bool
+    #[ReturnTypeWillChange] public function offsetExists($offset)
     {
         return isset($this->errors[ $offset ]);
     }
@@ -124,7 +125,7 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface, \JsonSerializable
      * @param mixed $offset
      * @return mixed
      */
-    public function offsetGet($offset): mixed
+    #[ReturnTypeWillChange] public function offsetGet($offset)
     {
         return $this->getError($offset);
     }
@@ -135,7 +136,7 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface, \JsonSerializable
      * @param mixed $offset
      * @param mixed $value
      */
-    public function offsetSet($offset, $value): void
+    #[ReturnTypeWillChange] public function offsetSet($offset, $value)
     {
         $this->addError($offset, $value);
     }
@@ -145,7 +146,7 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface, \JsonSerializable
      *
      * @param mixed $offset
      */
-    public function offsetUnset($offset): void
+    #[ReturnTypeWillChange] public function offsetUnset($offset)
     {
         unset($this->errors[ $offset ]);
     }
@@ -155,7 +156,7 @@ class ErrorBag implements ArrayAccess, ErrorBagInterface, \JsonSerializable
      *
      * @return mixed data to be json serialized
      */
-    function jsonSerialize(): mixed
+    #[ReturnTypeWillChange] function jsonSerialize()
     {
         return $this->getErrors();
     }

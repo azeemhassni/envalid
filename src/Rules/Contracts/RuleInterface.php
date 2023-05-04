@@ -1,8 +1,8 @@
 <?php
 
-namespace azi\Rules\Contracts;
+namespace Azi\Envalid\Rules\Contracts;
 
-use azi\Arguments;
+use Azi\Envalid\Arguments;
 
 /**
  * Interface RuleContract

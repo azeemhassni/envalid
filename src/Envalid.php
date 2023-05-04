@@ -1,24 +1,28 @@
 <?php
 
-namespace azi;
+namespace Azi\Envalid;
 
 
-use azi\Contracts\ErrorBagInterface;
-use azi\Rules\AlNum;
-use azi\Rules\Alpha;
-use azi\Rules\ArrayRule;
-use azi\Rules\Boolean;
-use azi\Rules\Contracts\RuleInterface;
-use azi\Rules\Email;
-use azi\Rules\File;
-use azi\Rules\IP;
-use azi\Rules\Length;
-use azi\Rules\Max;
-use azi\Rules\Min;
-use azi\Rules\Number;
-use azi\Rules\Password;
-use azi\Rules\Required;
-use azi\Rules\Same;
+use Azi\Envalid\Contracts\ErrorBagInterface;
+use Azi\Envalid\Rules\AlNum;
+use Azi\Envalid\Rules\Alpha;
+use Azi\Envalid\Rules\ArrayRule;
+use Azi\Envalid\Rules\Boolean;
+use Azi\Envalid\Rules\CEP;
+use Azi\Envalid\Rules\Contracts\RuleInterface;
+use Azi\Envalid\Rules\CPFCNPJ;
+use Azi\Envalid\Rules\Email;
+use Azi\Envalid\Rules\File;
+use Azi\Envalid\Rules\IP;
+use Azi\Envalid\Rules\Length;
+use Azi\Envalid\Rules\Max;
+use Azi\Envalid\Rules\Min;
+use Azi\Envalid\Rules\Number;
+use Azi\Envalid\Rules\Password;
+use Azi\Envalid\Rules\Phone;
+use Azi\Envalid\Rules\Required;
+use Azi\Envalid\Rules\Same;
+use Azi\Envalid\Rules\UF;
 
 /**
  * Class Envalid
@@ -56,21 +60,24 @@ class Envalid
      */
     protected function loadDefaultRules()
     {
-        $this->rules[ 'email' ]    = new Email();
-        $this->rules[ 'required' ] = new Required();
-        $this->rules[ 'file' ]     = new File();
-        $this->rules[ 'bool' ]     = $this->rules[ 'boolean' ] = new Boolean();
-        $this->rules[ 'bool' ]     = new Boolean();
-        $this->rules[ 'array' ]    = new ArrayRule();
-        $this->rules[ 'password' ] = new Password();
-        $this->rules[ 'num' ]      = $this->rules[ 'number' ] = new Number();
-        $this->rules[ 'len' ]      = $this->rules[ 'length' ] = new Length();
-        $this->rules[ 'min' ]      = $this->rules[ 'minimum' ] = new Min();
-        $this->rules[ 'max' ]      = $this->rules[ 'maximum' ] = new Max();
-        $this->rules[ 'alpha' ]    = new Alpha();
-        $this->rules[ 'alnum' ]    = $this->rules[ 'string' ] = new AlNum();
-        $this->rules[ 'ip' ]       = new IP();
-        $this->rules[ 'same' ]     = new Same();
+        $this->rules['email'] = new Email();
+        $this->rules['required'] = new Required();
+        $this->rules['file'] = new File();
+        $this->rules['bool'] = $this->rules['boolean'] = new Boolean();
+        $this->rules['array'] = new ArrayRule();
+        $this->rules['password'] = new Password();
+        $this->rules['num'] = $this->rules['number'] = new Number();
+        $this->rules['len'] = $this->rules['length'] = new Length();
+        $this->rules['min'] = $this->rules['minimum'] = new Min();
+        $this->rules['max'] = $this->rules['maximum'] = new Max();
+        $this->rules['alpha'] = new Alpha();
+        $this->rules['alnum'] = $this->rules['string'] = new AlNum();
+        $this->rules['ip'] = new IP();
+        $this->rules['same'] = new Same();
+        $this->rules['cep'] = new CEP();
+        $this->rules['uf'] = new UF();
+        $this->rules['cpf_cnpj'] = new CPFCNPJ();
+        $this->rules['phone'] = new Phone();
     }
 
     /**
@@ -81,7 +88,7 @@ class Envalid
     public function validate($data, $rules)
     {
         $this->userRules = $rules;
-        $this->data      = $data;
+        $this->data = $data;
 
         // We'll go through each field
         // and fetch the rules from passed rules
@@ -89,33 +96,33 @@ class Envalid
         // init the rule and pass the args to validate method
         foreach ($data as $field => $value) {
 
-            if (!isset($rules[ $field ])) {
+            if (!isset($rules[$field])) {
                 continue;
             }
 
-            $userRules = explode('|', $rules[ $field ]);
+            $userRules = explode('|', $rules[$field]);
 
             foreach ($userRules as $rule) {
-                $parsed      = $this->parseRule($rule);
-                $ruleName    = $parsed[ 'rule' ];
-                $ruleMessage = $parsed[ 'message' ];
+                $parsed = $this->parseRule($rule);
+                $ruleName = $parsed['rule'];
+                $ruleMessage = $parsed['message'];
 
-                if (!isset($this->rules[ $ruleName ])) {
-                    trigger_error(sprintf("Rule `%s` is not recognized, please register it using \azi\Envalid::addRule(\$ruleName, \$ruleClass) method",
+                if (!isset($this->rules[$ruleName])) {
+                    trigger_error(sprintf("Rule `%s` is not recognized, please register it using \Azi\Envalid\Envalid::addRule(\$ruleName, \$ruleClass) method",
                         $ruleName));
                 }
 
-                $ruleClass = @$this->rules[ $ruleName ];
+                $ruleClass = @$this->rules[$ruleName];
                 if (is_callable($ruleClass)) {
                     $ruleMessage = call_user_func_array($ruleClass, [
                         $field,
                         $value,
-                        $parsed[ 'args' ]
+                        $parsed['args']
                     ]);
 
                     $valid = $ruleMessage === true;
                 } else {
-                    $valid = $ruleClass->validate($field, $value, $parsed[ 'args' ]);
+                    $valid = $ruleClass->validate($field, $value, $parsed['args']);
                 }
 
                 if (!$ruleMessage) {
@@ -140,20 +147,20 @@ class Envalid
     protected function parseRule($rule)
     {
         // arguments can be passed in rule--key=value=key2=value2 syntax
-        $args      = [];
+        $args = [];
         $variables = [];
-        $message   = false;
+        $message = false;
 
 
         if (strpos($rule, '--')) {
             // we've arguments
             $parsed = explode('--', $rule);
-            $rule   = $parsed[ 0 ];
+            $rule = $parsed[0];
 
-            parse_str($parsed[ 1 ], $args);
+            parse_str($parsed[1], $args);
 
-            if (isset($args[ 'message' ])) {
-                $message = $args[ 'message' ];
+            if (isset($args['message'])) {
+                $message = $args['message'];
             }
 
         }
@@ -161,8 +168,8 @@ class Envalid
 
         if (strpos($rule, ':')) {
             $parsed = explode(':', $rule);
-            $rule   = $parsed[ 0 ];
-            unset($parsed[ 0 ]); // remove rule name
+            $rule = $parsed[0];
+            unset($parsed[0]); // remove rule name
             $variables = ['variables' => array_values($parsed)];
         }
 
@@ -170,9 +177,9 @@ class Envalid
         $args->set('validator', $this);
 
         return [
-            'rule'    => $rule,
+            'rule' => $rule,
             'message' => $message,
-            'args'    => $args
+            'args' => $args
         ];
     }
 
@@ -214,10 +221,10 @@ class Envalid
     public function addRule($id, $rule)
     {
         if (!is_callable($rule) && !$rule instanceof RuleInterface) {
-            throw new \Exception("Rule must be callable or an instance of " . '\azi\Rules\Contracts\RuleInterface');
+            throw new \Exception("Rule must be callable or an instance of " . '\Azi\Envalid\Rules\Contracts\RuleInterface');
         }
 
-        $this->rules[ $id ] = $rule;
+        $this->rules[$id] = $rule;
         return $this;
     }
 
