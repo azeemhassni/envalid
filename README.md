@@ -1,23 +1,17 @@
-# Envalid
-**Envalid** is a framework agnostic and fluent server side form validation package for PHP
+# Envalid  
 
-[![Build Status](https://travis-ci.org/azeemhassni/envalid.svg?branch=master&version=0.0.1)](https://travis-ci.org/azeemhassni/envalid)
+**This is a fork of azi/envalid, originally authored by @azeemhassni.**  
 
-# [Documentation](http://envalid.azeemhassni.com/docs.html)
+**Envalid** is a framework agnostic and fluent server side form validation package for PHP  
+
+- [Documentation](http://envalid.azeemhassni.com/docs.html)
 
 # Installation
 Envalid can be installed via `composer` just execute the following command
 in your project root
 
-```composer require azi/envalid```
+```composer require wesleydeveloper/envalid```
 
-Or add the following in your composer.json file and run `composer install`
-
-```
-"require": {
-    "azi/envalid": "^1.0"
-}
-```
 
 # Usage
 Using envalid in your project is super simple, here is an example
@@ -52,10 +46,15 @@ $validator->validate(array_merge($_POST, $_FILES), [
 - same
 - alpha
 - alnum
+- cpf_cnpj
+- cep
+- phone `Only BR phone numbers are supported`
+- uf
 
 # Contributions
 This repository is maintained by 
 [@azeemhassni](https://github.com/azeemhassni)
+[@wesleydeveloper](https://github.com/wesleydeveloper)
  
  If you can contribute I'd love to merge your PR and your name will be mentioned 
  in the release notes and contributors list.

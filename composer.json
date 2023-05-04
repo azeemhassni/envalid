@@ -1,6 +1,6 @@
 {
-  "name": "azi/envalid",
-  "description": "Server side data/form validation library",
+  "name": "wesleydeveloper/envalid",
+  "description": "Server side data/form validation library for PHP",
   "license": "MIT",
   "authors": [
     {
@@ -10,8 +10,8 @@
   ],
   "autoload": {
     "psr-4": {
-      "Azi\\Envalid\\": "src",
-      "Azi\\Envalid\\Tests\\": "tests"
+      "Azi\\Envalid\\": "src/",
+      "Azi\\Envalid\\Tests\\": "tests/"
     }
   },
   "require": {
